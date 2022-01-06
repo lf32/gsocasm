@@ -1,0 +1,160 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<title>GSOC {{ yr_num }}</title>
+
+<style>
+
+* {
+	        margin: 0;
+		padding: 0;
+	        box-sizing: border-box;
+}
+
+	    a, a:visited, a:hover {
+                color: #d40000;			        
+	    }
+
+	    body {
+		    width: 100%;
+	            background: #eeeeee;
+	            color: #111111;
+	            font-family: sans-serif, monospace;					        
+	    }
+
+	    h2 {
+		        font-size: 1.4em;
+				        
+	    }
+	        
+	    p {
+		            padding: 10px 0;
+			    font-size: 20px;			        
+	    }
+
+	    a {
+		            text-decoration: none;
+	    }
+
+
+	    section {
+		    margin: auto;
+		    width: 95vw;
+		    padding: 3vw;
+		    max-width: 1600px;
+		    display: flex;
+		    flex-flow: row;
+		    flex-direction: row;
+		    flex-wrap: wrap;
+		    justify-content: space-around;
+		    align-items: center;
+		    align-content: center;
+	    
+	    }
+
+	    .card {
+		    display: block;
+		    margin: auto;
+		    max-width: 333px;
+		    min-height: 400px;
+		    margin: 0px 10px 20px 10px;
+	    }
+
+	    img {
+		    align: center;
+		    max-height: 250px;
+		    max-width: 90%;
+	    }
+
+	    .card-info {
+		    font-style: oblique;
+		    opacity: 1;
+		    padding: 20px 0px;
+	    }
+
+	    .card-info:hover {
+		    font-style: normal;
+		    opacity: 0.75;
+	    }
+
+
+	    h2 {
+		    word-break: break-all;
+		    font-size: 2rem;
+	    }
+
+	    h3 {
+		    font-size: 1.2em;
+	    }
+
+	    b {
+		    font-size: 1em;
+		    text-decoration: underline;
+	    }
+
+	    p {
+		   line-height: 1.1em;
+
+	    }
+
+	    p span {
+		background-color: #dddddd;
+	    }
+
+	    header {
+		    margin: 20px 0px;
+		    padding: 20px;
+	    }
+</style>
+<body>
+	<header>
+		<h1>GSOC YEAR <a href="/{{yr_num}}/">{{yr_num}}</a></h1>
+		<a href="/">HOME</a>&ensp;
+		<a href="/2016/">2016</a>&ensp;
+		<a href="/2017/">2017</a>&ensp;
+		<a href="/2018/">2018</a>&ensp;
+		<a href="/2019/">2019</a>&ensp;
+		<a href="/2020/">2020</a>&ensp;
+		<a href="/2021/">2021</a>&ensp;
+	</header>
+
+
+	<section>
+	{% for org in yr_data %}
+		<div class="card">
+			<div class="img-tg">
+				<a href="{{ org.url }}">
+					<img src="{{ org.image_url }}" alt="img" loading="lazy">
+				</a>
+			</div>
+			<div class="card-info"> 
+				<center><h2>{{ org.name }}</h2></center>
+			<p>
+				<a href="{{ org.irc_channel }}">#IRC</a>&ensp;
+				<a href="{{ org.mailing_list }}">mailing-list</a>&ensp;
+				<a href="{{ org.contact_email }}">@mail</a>
+			</p>
+			<br>
+			<h3 id="desc">
+				Description[<a href="{{ org.projects_url }}" target="_blank">{{ org.num_projects }}</a>]
+			</h3>
+			<p>{{ org.description }}</p>
+			<br>
+			<h3 id="tech">Topics</h3>
+			<p>
+			{% for top in org.topics %}
+				<span>{{ top }}</span>&ensp;
+			{% endfor %}
+			</p>
+			<h3 id="tech">Technologies</h3>
+			<p>
+			{% for tool in org.technologies %}
+				<span>{{ tool }}</span>&ensp;
+			{% endfor %}
+			</p>
+			</div>
+		</div>
+	<p>{% endfor %}</p>
+	</section>
+	</body>
+</html>
