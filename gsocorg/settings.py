@@ -4,12 +4,13 @@ import os
 import environ
 import django_heroku
 
-env_file = os.path.join(BASE_DIR, ".env")
-env = environ.Env()
-env.read_env(env_file)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+env_file = os.path.join(BASE_DIR, ".env")
+env = environ.Env()
+env.read_env(env_file)
 
 SECRET_KEY = env('SECRET_KEY')
 
